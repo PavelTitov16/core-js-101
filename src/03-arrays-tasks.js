@@ -36,7 +36,7 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-  return len.filter((item) => item % 2 !== 0);
+  return Array(len).fill(1).map((num, index) => num + 2 * index);
 }
 
 
@@ -233,8 +233,13 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  let counter = 0;
+  const resultArr = arr.reduce((sum, num) => {
+    sum.push(counter += num);
+    return sum;
+  }, []);
+  return resultArr;
 }
 
 /**
@@ -267,8 +272,13 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const newArr = arr.map((item, index) => {
+    const arr1 = [];
+    arr1.length = index + 1;
+    return arr1.fill(item);
+  });
+  return newArr.flat();
 }
 
 
@@ -303,8 +313,14 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  if (arr.length === 0) return 0;
+  return arr.reduce((sum, item) => {
+    if (typeof (item) === 'number' && item > 0) {
+      return sum + 1;
+    }
+    return sum;
+  }, 0);
 }
 
 /**
@@ -365,8 +381,11 @@ function getItemsSum(arr) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  return arr.map((item) => Boolean(item)).filter((value) => value === false).length;
 }
 
 /**

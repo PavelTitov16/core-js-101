@@ -209,7 +209,6 @@ function getRectangleString(width, height) {
   const strTop = `┌${'─'.repeat(width - 2)}┐\n`;
   const strBottom = `└${'─'.repeat(width - 2)}┘\n`;
   const strSide = `│${' '.repeat(width - 2)}│\n`.repeat(height - 2);
-  console.log(strTop + strSide + strBottom);
   return strTop + strSide + strBottom;
 }
 
