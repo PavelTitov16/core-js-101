@@ -38,7 +38,6 @@ function parseDataFromIso8601(value) {
   return Date.parse(value);
 }
 
-
 /**
  * Returns true if specified date is leap year and false otherwise
  * Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
@@ -56,7 +55,6 @@ function parseDataFromIso8601(value) {
 function isLeapYear(/* date */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the string representation of the timespan between two dates.
