@@ -183,24 +183,18 @@ function isInsideCircle(/* circle, point */) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  const array = str.split('');
-  const checkArray = new Set(array);
-  let count = 0;
-  let result = '';
-  for (let i = 1; i < array.length; i += 1) {
-    if (checkArray.has(array[i])) {
-      result = array[i];
-      count += 1;
-      if (count > 1) {
-        count = 0;
-        result = '';
-      }
+  const set = new Set();
+  const finalSet = new Set();
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    if (set.has(char)) finalSet.delete(char);
+    else {
+      set.add(char);
+      finalSet.add(char);
     }
   }
-  if (count === 1) {
-    return result;
-  }
-  return null;
+  const iter = finalSet.values();
+  return iter.next().value;
 }
 /**
  * Returns the string representation of math interval,
